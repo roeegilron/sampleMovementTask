@@ -1,0 +1,437 @@
+<html>
+
+<head>
+    <title>Go-NoGo Experiment</title>
+    <script src="jspsych-6.1.0/jspsych.js"></script>
+    <script src="jspsych-6.1.0/plugins/jspsych-html-keyboard-response.js"></script>
+    <script src="jspsych-6.1.0/plugins/jspsych-image-keyboard-response.js"></script>
+    <script src="jspsych-6.1.0/plugins/jspsych-audio-button-response.js"></script>
+    <script src="jspsych-6.1.0/plugins/jspsych-vsl-grid-scene.js"></script>
+    <script src="jspsych-6.1.0/plugins/jspsych-html-button-response.js"></script>
+    <link href="jspsych-6.1.0/css/jspsych.css" rel="stylesheet" type="text/css">
+    </link>
+    <style>
+        .target-dimensions {
+            height: 50;
+            width: 50;
+        }
+
+        .fixation-dimensions {
+            height: 50;
+            width: 50;
+        }
+        .blue-topbtn {
+            background-color: blue;
+            border: none;
+            padding: 20px;
+            margin-top: 0;
+            margin-bottom: 150;
+            margin-right: 0;
+            margin-left: 0;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .blue-bottombtn {
+            background-color: blue;
+            border: none;
+            padding: 20px;
+            margin-top: 400;
+            margin-bottom: 0;
+            margin-right: 0;
+            margin-left: 0;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .blue-rightbtn {
+            background-color: blue;
+            border: none;
+            padding: 20px;
+            margin-top: 10;
+            margin-bottom: 0;
+            margin-right: 0;
+            margin-left: 600;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .blue-leftbtn {
+            background-color: blue;
+            border: none;
+            padding: 20px;
+            margin-top: 10;
+            margin-bottom: 0;
+            margin-right: 600;
+            margin-left: 0;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .green {
+            background-color: green;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .red {
+            background-color: red;
+            border-radius: 50%;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body></body>
+
+<script>
+	///////////////////////// PARAMETERS
+	let timeline = [];
+    const numberOfTrials = 2;
+    const HOLD_DURATION = 3000;
+    const PREP_DURATION = 3000;
+    const MOVE_DURATION = 3000;
+    let times = "";
+    let currentKeyIsUp = true;
+
+
+
+    ///////////////////////// SET UP TRIALS
+
+    // top button:
+    let blueTopButtonPrep = {
+        type: 'html-button-response',
+        stimulus: '<span class="red fixation-dimensions"></span>',
+        choices: [''],
+        trial_duration: PREP_DURATION,
+        margin_vertical: -300,
+        margin_horizontal: 0,
+        button_html: '<button class="blue-topbtn target-dimensions">%choice%</button>',
+        on_finish: function (data) {
+            times += Date.now().toString() + ", top target PREP end\n";
+            console.log('blueTopButton prep end');
+        },
+        on_load: function (data) {
+            times += Date.now().toString() + ", top target PREP start\n";
+            console.log('blueTopButton prep start');
+        }
+    };
+    
+    let blueTopButtonMove = {
+        type: 'html-button-response',
+        stimulus: '<span class="green fixation-dimensions"></span>',
+        choices: [''],
+        trial_duration: MOVE_DURATION,
+        margin_vertical: -300,
+        margin_horizontal: 0,
+        button_html: '<button class="blue-topbtn target-dimensions">%choice%</button>',
+        on_finish: function (data) {
+            times += Date.now().toString() + ", top target MOVE end\n";
+            console.log('blueTopButton move end.');
+        },
+        on_load: function (data) {
+            times += Date.now().toString() + ", top target MOVE start\n";
+            console.log('blueTopButton move start.');
+        }
+    };
+
+    // bottom button:
+    let blueBottomButtonPrep = {
+        type: 'html-button-response',
+        stimulus: '<span class="red fixation-dimensions"></span>',
+        choices: [''],
+        trial_duration: PREP_DURATION,
+        margin_vertical: -300,
+        margin_horizontal: 0,
+        button_html: '<button class="blue-bottombtn target-dimensions">%choice%</button>',
+        on_finish: function (data) {
+            times += Date.now().toString() + ", bottom target PREP end\n";
+            console.log('blueTopButton prep end');
+        },
+        on_load: function (data) {
+            times += Date.now().toString() + ", bottom target PREP start\n";
+            console.log('blueTopButton prep start');
+        }
+    };
+
+    let blueBottomButtonMove = {
+        type: 'html-button-response',
+        stimulus: '<span class="green fixation-dimensions"></span>',
+        choices: [''],
+        trial_duration: MOVE_DURATION,
+        margin_vertical: -300,
+        margin_horizontal: 0,
+        button_html: '<button class="blue-bottombtn target-dimensions">%choice%</button>',
+        on_finish: function (data) {
+            times += Date.now().toString() + ", bottom target MOVE end\n";
+            console.log('blueTopButton move end.');
+        },
+        on_load: function (data) {
+            times += Date.now().toString() + ", bottom target MOVE start\n";
+            console.log('blueTopButton move start.');
+        }
+    };
+
+    // right button:
+    let blueRightButtonPrep = {
+        type: 'html-button-response',
+        stimulus: '<span class="red fixation-dimensions"></span>',
+        choices: [''],
+        trial_duration: PREP_DURATION,
+        margin_vertical: -120,
+        margin_horizontal: 0,
+        button_html: '<button class="blue-rightbtn target-dimensions">%choice%</button>',
+        on_finish: function (data) {
+            times += Date.now().toString() + ", right target PREP end\n";
+            console.log('blueTopButton prep end');
+        },
+        on_load: function (data) {
+            times += Date.now().toString() + ", right target PREP start\n";
+            console.log('blueTopButton prep start');
+        }
+    };
+
+    let blueRightButtonMove = {
+        type: 'html-button-response',
+        stimulus: '<span class="green fixation-dimensions"></span>',
+        choices: [''],
+        trial_duration: MOVE_DURATION,
+        margin_vertical: -120,
+        margin_horizontal: 0,
+        button_html: '<button class="blue-rightbtn target-dimensions">%choice%</button>',
+        on_finish: function (data) {
+            times += Date.now().toString() + ", right target MOVE end\n";
+            console.log('blueTopButton move end.');
+        },
+        on_load: function (data) {
+            times += Date.now().toString() + ", right target MOVE start\n";
+            console.log('blueTopButton move start.');
+        }
+    };
+
+    // left button:
+    let blueLeftButtonPrep = {
+        type: 'html-button-response',
+        stimulus: '<span class="red fixation-dimensions"></span>',
+        choices: [''],
+        trial_duration: PREP_DURATION,
+        margin_vertical: -120,
+        margin_horizontal: 0,
+        button_html: '<button class="blue-leftbtn target-dimensions">%choice%</button>',
+        on_finish: function (data) {
+            times += Date.now().toString() + ", left target PREP end\n";
+            console.log('blueTopButton prep end');
+        },
+        on_load: function (data) {
+            times += Date.now().toString() + ", left target PREP start\n";
+            console.log('blueTopButton prep start');
+        }
+    };
+
+    let blueLeftButtonMove = {
+        type: 'html-button-response',
+        stimulus: '<span class="green fixation-dimensions"></span>',
+        choices: [''],
+        trial_duration: MOVE_DURATION,
+        margin_vertical: -120,
+        margin_horizontal: 0,
+        button_html: '<button class="blue-leftbtn target-dimensions">%choice%</button>',
+        on_finish: function (data) {
+            times += Date.now().toString() + ", left target MOVE end\n";
+            console.log('blueTopButton move end.');
+        },
+        on_load: function (data) {
+            times += Date.now().toString() + ", left target MOVE start\n";
+            console.log('blueTopButton move start.');
+        }
+    };
+
+    let fixation = {
+        type: 'html-keyboard-response',
+        stimulus: '<span class="red fixation-dimensions"></span>',
+        choices: jsPsych.NO_KEYS,
+        trial_duration: HOLD_DURATION,
+        on_finish: function (data) {
+            times += Date.now().toString() + ", FixationFinish\n";
+            console.log('fixation trial finished.');
+        },
+        on_load: function () {
+            times += Date.now().toString() + ", FixationLoad\n";
+            console.log('fixation trial loaded.');
+        }
+    };
+    
+    ////////////////////////
+    // SET UP BLOCKS
+    ////////////////////////
+    
+    
+    //top button block
+    let top_button = {
+            timeline: [fixation, blueTopButtonPrep, blueTopButtonMove],
+            randomize_order: false,
+            repetitions: 1
+    };
+
+    //buttom button block
+    let buttom_button = {
+            timeline: [fixation, blueBottomButtonPrep, blueBottomButtonMove],
+            randomize_order: false,
+            repetitions: 1
+    };
+
+    //right button block
+    let right_button = {
+            timeline: [fixation, blueRightButtonPrep, blueRightButtonMove],
+            randomize_order: false,
+            repetitions: 1
+    };
+
+    //left button block
+    let left_button = {
+            timeline: [fixation, blueLeftButtonPrep, blueLeftButtonMove],
+            randomize_order: false,
+            repetitions: 1
+    };
+
+
+    ///////////////////
+    /// CREATE TIMELINE
+    //////////////////
+
+
+    // cant figure out how to randomize properly - ideally only such block will be needed
+    // intead of the skanky stuff I have below
+    let blk1 = {
+            timeline: [right_button, top_button, buttom_button, left_button],
+            randomize_order: false,
+            repetitions: 1
+    };
+
+    let blk2 = {
+            timeline: [top_button, right_button, left_button, buttom_button ],
+            randomize_order: false,
+            repetitions: 1
+    };
+    let blk3 = {
+            timeline: [left_button, right_button, buttom_button, top_button ],
+            randomize_order: false,
+            repetitions: 1
+    };
+
+    let blk4 = {
+            timeline: [buttom_button, top_button,  left_button, right_button],
+            randomize_order: false,
+            repetitions: 1
+    };
+
+    // trials 1 - 12
+    timeline.push(blk1);
+    timeline.push(blk2);
+    timeline.push(blk3);
+    timeline.push(blk4);
+
+    timeline.push(blk4);
+    timeline.push(blk2);
+    timeline.push(blk1);
+    timeline.push(blk3);
+
+    timeline.push(blk1);
+    timeline.push(blk2);
+    timeline.push(blk3);
+    timeline.push(blk4);
+
+    // trials 12- 24
+    timeline.push(blk1);
+    timeline.push(blk2);
+    timeline.push(blk3);
+    timeline.push(blk4);
+
+    timeline.push(blk4);
+    timeline.push(blk2);
+    timeline.push(blk1);
+    timeline.push(blk3);
+
+    timeline.push(blk1);
+    timeline.push(blk2);
+    timeline.push(blk3);
+    timeline.push(blk4);
+
+    // trials 24 - 40
+    timeline.push(blk1);
+    timeline.push(blk2);
+    timeline.push(blk3);
+    timeline.push(blk4);
+
+    timeline.push(blk4);
+    timeline.push(blk2);
+    timeline.push(blk1);
+    timeline.push(blk3);
+
+    timeline.push(blk1);
+    timeline.push(blk2);
+    timeline.push(blk3);
+    timeline.push(blk4);
+
+    timeline.push(blk4);
+    timeline.push(blk2);
+    timeline.push(blk1);
+    timeline.push(blk3);
+
+
+    ///////////////////
+    /// CREATE TIMELINE
+    //////////////////
+
+    //initialize the trial and display the statistics at end.
+    jsPsych.init({
+        timeline: timeline,
+        on_finish: function () {
+            let filename = "task_" + Date.now().toString() + ".json";
+            saveData(times, filename);
+            jsPsych.data.displayData();
+
+        }
+    });
+
+
+    ///////////////////
+    /// KEYBOARD CALLBACKS
+    //////////////////
+
+    document.onkeyup = function (e) {
+        if (e.keyCode == 32) {
+            times += Date.now().toString() + ", KeyUp\n";
+            currentKeyIsUp = true;
+        }
+
+    }
+
+    document.onkeydown = function (e) {
+        if (e.keyCode == 32 && currentKeyIsUp) {
+            times += Date.now().toString() + ", KeyDown\n";
+            currentKeyIsUp = false;
+        }
+    }
+
+    ///////////////////
+    /// SAVE DATA
+    //////////////////
+    var saveData = (function () {
+        var a = document.createElement("a");
+        document.body.appendChild(a);
+        a.style = "display: none";
+        return function (data, fileName) {
+            var json = data,
+                blob = new Blob([json], { type: "octet/stream" }),
+                url = window.URL.createObjectURL(blob);
+            a.href = url;
+            a.download = fileName;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        };
+    }());
+
+</script>
+
+</html>
