@@ -1,0 +1,148 @@
+<html>
+
+<head>
+    <title>Go-NoGo Experiment</title>
+    <script src="jspsych-6.1.0/jspsych.js"></script>
+    <script src="jspsych-6.1.0/plugins/jspsych-html-keyboard-response.js"></script>
+    <script src="jspsych-6.1.0/plugins/jspsych-image-keyboard-response.js"></script>
+    <script src="jspsych-6.1.0/plugins/jspsych-audio-button-response.js"></script>
+    <script src="jspsych-6.1.0/plugins/jspsych-vsl-grid-scene.js"></script>
+    <script src="jspsych-6.1.0/plugins/jspsych-html-button-response.js"></script>
+    <link href="jspsych-6.1.0/css/jspsych.css" rel="stylesheet" type="text/css">
+    </link>
+    <style>
+        .target-dimensions {
+            height: 50;
+            width: 50;
+        }
+
+        .fixation-dimensions {
+            height: 50;
+            width: 50;
+        }
+
+        .instructions {
+          grid-area: header;
+        }
+        .topB {
+          grid-area: top-button;
+          background-color: blue;
+          border: none;
+          padding: 0px;
+          margin-top: 0;
+          margin-bottom: 0;
+          margin-right: 0;
+          margin-left: 0;
+          cursor: pointer;
+          border-radius: 50%;
+        }
+        .botB {
+          grid-area: buttom-button;
+          background-color: blue;
+          border: none;
+          padding: 20px;
+          margin-top: 0;
+          margin-bottom: 0;
+          margin-right: 0;
+          margin-left: 0;
+          cursor: pointer;
+          border-radius: 50%;
+        }
+
+        .container {
+          display: grid;
+          grid-template-columns: 50px 50px 50px%;
+          grid-template-rows:    100px 100px 100px 5000px;
+          column-gap: 10px;
+          row-gap: 500px;
+          grid-template-areas:
+            "header header header"
+            ". x ."
+            " left-button center-button right button"
+            ". buttom-button .";
+        }
+
+
+
+        .red {
+            grid-area: buttom-button;
+            background-color: red;
+            border-radius: 50%;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body></body>
+
+<script>
+    let timeline = [];
+    const HOLD_DURATION = 3000;
+    const PREP_DURATION = 10000;
+    const MOVE_DURATION = 3000;
+
+    var pattern = [
+      ["img/1.gif", "img/2.gif", 0],
+      [ 0, "img/3.gif", 0],
+      ["img/5.gif", "img/4.gif", 0]
+    ];
+
+    var image_size = 100; // pixels
+
+    var grid_stimulus = jsPsych.plugins['vsl-grid-scene'].generate_stimulus(pattern, image_size);
+
+
+
+    // top button:
+    let blueTopButtonPrep = {
+        type: 'html-button-response',
+        stimulus: '<span class="red fixation-dimensions"></span>',
+        choices: [''],
+        trial_duration: PREP_DURATION,
+        margin_vertical: 0,
+        margin_horizontal: 0,
+        button_html: '<button class="topB target-dimensions ">%choice%</button>',
+        on_finish: function (data) {
+            times += Date.now().toString() + ", top target PREP end\n";
+            console.log('blueTopButton prep end');
+        },
+        on_load: function (data) {
+            times += Date.now().toString() + ", top target PREP start\n";
+            console.log('blueTopButton prep start');
+        }
+    };
+
+
+    timeline.push(blueTopButtonPrep);
+
+
+    ///////////////////
+    /// CREATE TIMELINE
+    //////////////////
+
+    //initialize the trial and display the statistics at end.
+    jsPsych.init({
+        timeline: timeline,
+    });
+
+    ///////////////////
+    /// SAVE DATA
+    //////////////////
+    var saveData = (function () {
+        var a = document.createElement("a");
+        document.body.appendChild(a);
+        a.style = "display: none";
+        return function (data, fileName) {
+            var json = data,
+                blob = new Blob([json], { type: "octet/stream" }),
+                url = window.URL.createObjectURL(blob);
+            a.href = url;
+            a.download = fileName;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        };
+    }());
+
+</script>
+
+</html>
