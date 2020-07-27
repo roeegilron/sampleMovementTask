@@ -21,6 +21,7 @@
     const HOLD_DURATION = 3000;
     const PREP_DURATION = 3000;
     const MOVE_DURATION = 3000;
+    const END_MESSAGE_DURATION = 5000;
     let times = "";
     let currentKeyIsUp = true;
     let runExperiment  = false;
@@ -195,7 +196,8 @@
 
     let finishedExperiement = {
         type: "html-keyboard-response",
-        stimulus: "<h3>" + finishMessageToPatient + "</h3><br><h2>" + pressKeyToContinue + "</h2>"
+        stimulus: "<h3>" + finishMessageToPatient + "</h3><br><h2>" + pressKeyToContinue + "</h2>",
+        trial_duration: END_MESSAGE_DURATION,
     }
 
     ////////////////////////
@@ -348,6 +350,7 @@
     //////////////////
 
     //initialize the trial and display the statistics at end.
+    //both instructions and finish message included
     jsPsych.init({
         timeline: [instructions].concat(jsPsych.randomization.repeat([top_button, buttom_button, right_button, left_button], numberOfTrials)).concat([finishedExperiement]),
         on_finish: function () {
@@ -357,6 +360,45 @@
 
         }
     });
+
+    /*
+    //instructions included but no finish message
+    jsPsych.init({
+        timeline: [instructions].concat(jsPsych.randomization.repeat([top_button, buttom_button, right_button, left_button], numberOfTrials)),
+        on_finish: function () {
+            let filename = "task_" + Date.now().toString() + ".csv";
+            saveData(times, filename);
+            //jsPsych.data.displayData();
+
+        }
+    });
+    */
+
+    /*
+    //no instructions but finish message included
+    jsPsych.init({
+        timeline: jsPsych.randomization.repeat([top_button, buttom_button, right_button, left_button], numberOfTrials).concat([finishedExperiement]),
+        on_finish: function () {
+            let filename = "task_" + Date.now().toString() + ".csv";
+            saveData(times, filename);
+            //jsPsych.data.displayData();
+
+        }
+    });
+     */
+
+    /*
+    //neither instructions or finish message included
+    jsPsych.init({
+        timeline: jsPsych.randomization.repeat([top_button, buttom_button, right_button, left_button], numberOfTrials),
+        on_finish: function () {
+            let filename = "task_" + Date.now().toString() + ".csv";
+            saveData(times, filename);
+            //jsPsych.data.displayData();
+
+        }
+    });
+     */
 
     ///////////////////
     /// SAVE DATA
