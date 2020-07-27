@@ -1,0 +1,76 @@
+.target-dimensions {
+    height: 50;
+    width: 50;
+}
+
+.fixation-dimensions {
+    height: 50;
+    width: 50;
+}
+.blue-topbtn {
+    background-color: blue;
+    border: none;
+    padding: 20px;
+    position: fixed; /* or absolute */
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.blue-bottombtn {
+    background-color: blue;
+    border: none;
+    padding: 20px;
+    position: fixed; /* or absolute */
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.blue-rightbtn {
+    background-color: blue;
+    border: none;
+    padding: 20px;
+    position: fixed; /* or absolute */
+    top: 50%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.blue-leftbtn {
+    background-color: blue;
+    border: none;
+    padding: 20px;
+    position: fixed; /* or absolute */
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.green {
+    position: fixed; /* or absolute */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: green;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.red {
+    position: fixed; /* or absolute */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
+}
