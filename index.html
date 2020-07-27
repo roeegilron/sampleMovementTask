@@ -24,6 +24,9 @@
     let times = "";
     let currentKeyIsUp = true;
     let runExperiment  = false;
+    const instructionsToPatient = "Instructions go here";
+    const finishMessageToPatient = "Your experiment has finished. Thank you!"
+    const pressKeyToContinue = "-Press any key to continue-";
 
 
 
@@ -184,6 +187,17 @@
         }
     };
 
+    //instructions for the experiment
+    let instructions = {
+        type: "html-keyboard-response",
+        stimulus: "<h3>" + instructionsToPatient + "</h3><br><h2>" + pressKeyToContinue + "</h2>"
+    };
+
+    let finishedExperiement = {
+        type: "html-keyboard-response",
+        stimulus: "<h3>" + finishMessageToPatient + "</h3><br><h2>" + pressKeyToContinue + "</h2>"
+    }
+
     ////////////////////////
     // SET UP BLOCKS
     ////////////////////////
@@ -335,7 +349,7 @@
 
     //initialize the trial and display the statistics at end.
     jsPsych.init({
-        timeline: jsPsych.randomization.repeat([top_button, buttom_button, right_button, left_button], numberOfTrials),
+        timeline: [instructions].concat(jsPsych.randomization.repeat([top_button, buttom_button, right_button, left_button], numberOfTrials)).concat([finishedExperiement]),
         on_finish: function () {
             let filename = "task_" + Date.now().toString() + ".csv";
             saveData(times, filename);
