@@ -43,8 +43,6 @@
         stimulus: '<span class="red fixation-dimensions"></span>',
         choices: [''],
         trial_duration: PREP_DURATION,
-        margin_vertical: -300,
-        margin_horizontal: 0,
         button_html: '<button class="blue-topbtn target-dimensions">%choice%</button>',
         on_finish: function (data) {
             times += Date.now().toString() + ", top target PREP end\n";
@@ -61,8 +59,6 @@
         stimulus: '<span class="green fixation-dimensions"></span>',
         choices: [''],
         trial_duration: MOVE_DURATION,
-        margin_vertical: -300,
-        margin_horizontal: 0,
         button_html: '<button class="blue-topbtn target-dimensions">%choice%</button>',
         on_finish: function (data) {
             times += Date.now().toString() + ", top target MOVE end\n";
@@ -80,8 +76,6 @@
         stimulus: '<span class="red fixation-dimensions"></span>',
         choices: [''],
         trial_duration: PREP_DURATION,
-        margin_vertical: -300,
-        margin_horizontal: 0,
         button_html: '<button class="blue-bottombtn target-dimensions">%choice%</button>',
         on_finish: function (data) {
             times += Date.now().toString() + ", bottom target PREP end\n";
@@ -98,8 +92,6 @@
         stimulus: '<span class="green fixation-dimensions"></span>',
         choices: [''],
         trial_duration: MOVE_DURATION,
-        margin_vertical: -300,
-        margin_horizontal: 0,
         button_html: '<button class="blue-bottombtn target-dimensions">%choice%</button>',
         on_finish: function (data) {
             times += Date.now().toString() + ", bottom target MOVE end\n";
@@ -117,8 +109,6 @@
         stimulus: '<span class="red fixation-dimensions"></span>',
         choices: [''],
         trial_duration: PREP_DURATION,
-        margin_vertical: -120,
-        margin_horizontal: 0,
         button_html: '<button class="blue-rightbtn target-dimensions">%choice%</button>',
         on_finish: function (data) {
             times += Date.now().toString() + ", right target PREP end\n";
@@ -135,8 +125,6 @@
         stimulus: '<span class="green fixation-dimensions"></span>',
         choices: [''],
         trial_duration: MOVE_DURATION,
-        margin_vertical: -120,
-        margin_horizontal: 0,
         button_html: '<button class="blue-rightbtn target-dimensions">%choice%</button>',
         on_finish: function (data) {
             times += Date.now().toString() + ", right target MOVE end\n";
@@ -154,8 +142,6 @@
         stimulus: '<span class="red fixation-dimensions"></span>',
         choices: [''],
         trial_duration: PREP_DURATION,
-        margin_vertical: -120,
-        margin_horizontal: 0,
         button_html: '<button class="blue-leftbtn target-dimensions">%choice%</button>',
         on_finish: function (data) {
             times += Date.now().toString() + ", left target PREP end\n";
@@ -172,8 +158,6 @@
         stimulus: '<span class="green fixation-dimensions"></span>',
         choices: [''],
         trial_duration: MOVE_DURATION,
-        margin_vertical: -120,
-        margin_horizontal: 0,
         button_html: '<button class="blue-leftbtn target-dimensions">%choice%</button>',
         on_finish: function (data) {
             times += Date.now().toString() + ", left target MOVE end\n";
