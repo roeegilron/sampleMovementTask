@@ -222,7 +222,7 @@
     /// CREATE TIMELINE
     //////////////////
 
-
+/*
     // cant figure out how to randomize properly - ideally only such block will be needed
     // intead of the skanky stuff I have below
     let blk1 = {
@@ -263,7 +263,7 @@
 
 
 	// 16 clocks 
-    timeline.push(blk1); // 0-4 
+     timeline.push(blk1); // 0-4
     timeline.push(blk2); // 5- 8 
     timeline.push(blk3); // 9-12
     timeline.push(blk4); // 13-16
@@ -276,7 +276,7 @@
 	// 40 blocks
     timeline.push(blk2);
     timeline.push(blk3);
-
+*/
 
 
 
@@ -335,7 +335,7 @@
 
     //initialize the trial and display the statistics at end.
     jsPsych.init({
-        timeline: timeline,
+        timeline: jsPsych.randomization.repeat([top_button, buttom_button, right_button, left_button], numberOfTrials),
         on_finish: function () {
             let filename = "task_" + Date.now().toString() + ".csv";
             saveData(times, filename);
