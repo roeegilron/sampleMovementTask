@@ -50,7 +50,11 @@
         trial_duration: PREP_DURATION,
         button_html: '<button onclick="skipNextTrialFunc()" class="blue-topbtn target-dimensions">%choice%</button>',
         on_finish: function (data) {
-            if(!skipNextTrial){
+            if(skipNextTrial){
+                times += "Trial: " + trialNumber + ", " + Date.now().toString() + ", top target PREP end SKIPPED\n";
+                console.log('blueTopButton prep skipped end');
+            }
+            else{
                 times += "Trial: " + trialNumber + ", " + Date.now().toString() + ", top target PREP end\n";
                 console.log('blueTopButton prep end');
             }
@@ -97,11 +101,14 @@
         trial_duration: PREP_DURATION,
         button_html: '<button onclick="skipNextTrialFunc()" class="blue-bottombtn target-dimensions">%choice%</button>',
         on_finish: function (data) {
-            if(!skipNextTrial){
+            if(skipNextTrial){
+                times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", bottom target PREP end SKIPPED\n";
+                console.log('blueTopButton prep skipped end');
+            }
+            else{
                 times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", bottom target PREP end\n";
                 console.log('blueTopButton prep end');
             }
-
         },
         on_load: function (data) {
             times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", bottom target PREP start\n";
@@ -145,11 +152,14 @@
         trial_duration: PREP_DURATION,
         button_html: '<button onclick="skipNextTrialFunc()" class="blue-rightbtn target-dimensions">%choice%</button>',
         on_finish: function (data) {
-            if(!skipNextTrial){
+            if(skipNextTrial){
+                times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", right target PREP end SKIPPED\n";
+                console.log('blueTopButton prep skipped end');
+            }
+            else{
                 times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", right target PREP end\n";
                 console.log('blueTopButton prep end');
             }
-
         },
         on_load: function (data) {
             times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", right target PREP start\n";
@@ -193,11 +203,14 @@
         trial_duration: PREP_DURATION,
         button_html: '<button onclick="skipNextTrialFunc()" class="blue-leftbtn target-dimensions">%choice%</button>',
         on_finish: function (data) {
-            if(!skipNextTrial){
+            if(skipNextTrial){
+                times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", left target PREP end SKIPPED\n";
+                console.log('blueTopButton prep skipped end');
+            }
+            else{
                 times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", left target PREP end\n";
                 console.log('blueTopButton prep end');
             }
-
         },
         on_load: function (data) {
             times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", left target PREP start\n";
