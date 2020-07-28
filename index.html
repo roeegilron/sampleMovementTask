@@ -29,7 +29,7 @@
     const finishMessageToPatient = "Your experiment has finished. Thank you!"
     const pressKeyToContinue = "-Press any key to continue-";
 
-
+    let skipNextTrial = false;
 
     /// pressing q w e together will exit experiment
     let keyQ = false;
@@ -47,10 +47,12 @@
         stimulus: '<span class="red fixation-dimensions"></span>',
         choices: [''],
         trial_duration: PREP_DURATION,
-        button_html: '<button class="blue-topbtn target-dimensions">%choice%</button>',
+        button_html: '<button onclick="skipNextTrialFunc()" class="blue-topbtn target-dimensions">%choice%</button>',
         on_finish: function (data) {
-            times += Date.now().toString() + ", top target PREP end\n";
-            console.log('blueTopButton prep end');
+            if(!skipNextTrial){
+                times += Date.now().toString() + ", top target PREP end\n";
+                console.log('blueTopButton prep end');
+            }
         },
         on_load: function (data) {
             times += Date.now().toString() + ", top target PREP start\n";
@@ -65,12 +67,23 @@
         trial_duration: MOVE_DURATION,
         button_html: '<button class="blue-topbtn target-dimensions">%choice%</button>',
         on_finish: function (data) {
-            times += Date.now().toString() + ", top target MOVE end\n";
-            console.log('blueTopButton move end.');
+            if(skipNextTrial){
+                skipNextTrial = false;
+            }
+            else{
+                times += Date.now().toString() + ", top target MOVE end\n";
+                console.log('blueTopButton move end.');
+            }
         },
         on_load: function (data) {
-            times += Date.now().toString() + ", top target MOVE start\n";
-            console.log('blueTopButton move start.');
+            if(skipNextTrial){
+                jsPsych.finishTrial();
+            }
+            else{
+                times += Date.now().toString() + ", top target MOVE start\n";
+                console.log('blueTopButton move start.');
+            }
+
         }
     };
 
@@ -80,10 +93,13 @@
         stimulus: '<span class="red fixation-dimensions"></span>',
         choices: [''],
         trial_duration: PREP_DURATION,
-        button_html: '<button class="blue-bottombtn target-dimensions">%choice%</button>',
+        button_html: '<button onclick="skipNextTrialFunc()" class="blue-bottombtn target-dimensions">%choice%</button>',
         on_finish: function (data) {
-            times += Date.now().toString() + ", bottom target PREP end\n";
-            console.log('blueTopButton prep end');
+            if(!skipNextTrial){
+                times += Date.now().toString() + ", bottom target PREP end\n";
+                console.log('blueTopButton prep end');
+            }
+
         },
         on_load: function (data) {
             times += Date.now().toString() + ", bottom target PREP start\n";
@@ -98,12 +114,23 @@
         trial_duration: MOVE_DURATION,
         button_html: '<button class="blue-bottombtn target-dimensions">%choice%</button>',
         on_finish: function (data) {
-            times += Date.now().toString() + ", bottom target MOVE end\n";
-            console.log('blueTopButton move end.');
+            if(skipNextTrial){
+                skipNextTrial = false;
+            }
+            else{
+                times += Date.now().toString() + ", bottom target MOVE end\n";
+                console.log('blueTopButton move end.');
+            }
         },
         on_load: function (data) {
-            times += Date.now().toString() + ", bottom target MOVE start\n";
-            console.log('blueTopButton move start.');
+            if(skipNextTrial){
+                jsPsych.finishTrial();
+            }
+            else{
+                times += Date.now().toString() + ", bottom target MOVE start\n";
+                console.log('blueTopButton move start.');
+            }
+
         }
     };
 
@@ -113,10 +140,13 @@
         stimulus: '<span class="red fixation-dimensions"></span>',
         choices: [''],
         trial_duration: PREP_DURATION,
-        button_html: '<button class="blue-rightbtn target-dimensions">%choice%</button>',
+        button_html: '<button onclick="skipNextTrialFunc()" class="blue-rightbtn target-dimensions">%choice%</button>',
         on_finish: function (data) {
-            times += Date.now().toString() + ", right target PREP end\n";
-            console.log('blueTopButton prep end');
+            if(!skipNextTrial){
+                times += Date.now().toString() + ", right target PREP end\n";
+                console.log('blueTopButton prep end');
+            }
+
         },
         on_load: function (data) {
             times += Date.now().toString() + ", right target PREP start\n";
@@ -131,12 +161,23 @@
         trial_duration: MOVE_DURATION,
         button_html: '<button class="blue-rightbtn target-dimensions">%choice%</button>',
         on_finish: function (data) {
-            times += Date.now().toString() + ", right target MOVE end\n";
-            console.log('blueTopButton move end.');
+            if(skipNextTrial){
+                skipNextTrial = false;
+            }
+            else{
+                times += Date.now().toString() + ", right target MOVE end\n";
+                console.log('blueTopButton move end.');
+            }
         },
         on_load: function (data) {
-            times += Date.now().toString() + ", right target MOVE start\n";
-            console.log('blueTopButton move start.');
+            if(skipNextTrial){
+                jsPsych.finishTrial();
+            }
+            else{
+                times += Date.now().toString() + ", right target MOVE start\n";
+                console.log('blueTopButton move start.');
+            }
+
         }
     };
 
@@ -146,10 +187,13 @@
         stimulus: '<span class="red fixation-dimensions"></span>',
         choices: [''],
         trial_duration: PREP_DURATION,
-        button_html: '<button class="blue-leftbtn target-dimensions">%choice%</button>',
+        button_html: '<button onclick="skipNextTrialFunc()" class="blue-leftbtn target-dimensions">%choice%</button>',
         on_finish: function (data) {
-            times += Date.now().toString() + ", left target PREP end\n";
-            console.log('blueTopButton prep end');
+            if(!skipNextTrial){
+                times += Date.now().toString() + ", left target PREP end\n";
+                console.log('blueTopButton prep end');
+            }
+
         },
         on_load: function (data) {
             times += Date.now().toString() + ", left target PREP start\n";
@@ -164,12 +208,23 @@
         trial_duration: MOVE_DURATION,
         button_html: '<button class="blue-leftbtn target-dimensions">%choice%</button>',
         on_finish: function (data) {
-            times += Date.now().toString() + ", left target MOVE end\n";
-            console.log('blueTopButton move end.');
+            if(skipNextTrial){
+                skipNextTrial = false;
+            }
+            else{
+                times += Date.now().toString() + ", left target MOVE end\n";
+                console.log('blueTopButton move end.');
+            }
         },
         on_load: function (data) {
-            times += Date.now().toString() + ", left target MOVE start\n";
-            console.log('blueTopButton move start.');
+            if(skipNextTrial){
+                jsPsych.finishTrial();
+            }
+            else{
+                times += Date.now().toString() + ", left target MOVE start\n";
+                console.log('blueTopButton move start.');
+            }
+
         }
     };
 
@@ -198,6 +253,10 @@
         type: "html-keyboard-response",
         stimulus: "<h3>" + finishMessageToPatient + "</h3><br><h2>" + pressKeyToContinue + "</h2>",
         trial_duration: END_MESSAGE_DURATION,
+    }
+
+    function skipNextTrialFunc() {
+        skipNextTrial = true;
     }
 
     ////////////////////////
