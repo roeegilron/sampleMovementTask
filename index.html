@@ -15,17 +15,22 @@
 <body></body>
 
 <script>
-	///////////////////////// PARAMETERS / GLOBALS
+	////////////////////////
+    // PARAMETERS / GLOBALS 
+    ////////////////////////
+    
 	let timeline = [];
-    const numberOfTrials = 2;
-    const HOLD_DURATION = 3000;
-    const PREP_DURATION = 3000;
-    const MOVE_DURATION = 3000;
+	 // note that one trials consist of all 4 targets appearing once 
+	// so numberOfTrials  = 2 will give you 8 trials with each target appearing twice 
+    const numberOfTrials = 15;
+    const HOLD_DURATION = 2000;
+    const PREP_DURATION = 2000;
+    const MOVE_DURATION = 2000;
     const END_MESSAGE_DURATION = 5000;
     let times = "";
     let currentKeyIsUp = true;
     let runExperiment  = false;
-    const instructionsToPatient = "Instructions go here";
+    const instructionsToPatient = "When you see the red circle, press and hold spacebar. Hit the blue targets when middle circle turns green.";
     const finishMessageToPatient = "Your experiment has finished. Thank you!"
     const pressKeyToContinue = "-Press any key to continue-";
 
@@ -40,8 +45,10 @@
 
 
 
-    ///////////////////////// SET UP TRIALS
-
+	////////////////////////
+    // SET UP TRIALS 
+    ////////////////////////
+    
     // top button:
     let blueTopButtonPrep = {
         type: 'html-button-response',
@@ -277,7 +284,11 @@
         }
     };
 
-    //instructions for the experiment
+    
+	////////////////////////
+    // SET UP INSTRUCTIONS 
+    ////////////////////////
+    
     let instructions = {
         type: "html-keyboard-response",
         stimulus: "<h3>" + instructionsToPatient + "</h3><br><h2>" + pressKeyToContinue + "</h2>"
@@ -325,70 +336,6 @@
             randomize_order: false,
             repetitions: 1
     };
-
-
-    ///////////////////
-    /// CREATE TIMELINE
-    //////////////////
-
-/*
-    // cant figure out how to randomize properly - ideally only such block will be needed
-    // intead of the skanky stuff I have below
-    let blk1 = {
-            timeline: [right_button, top_button, buttom_button, left_button],
-            randomize_order: false,
-            repetitions: 1
-    };
-
-    let blk2 = {
-            timeline: [top_button, right_button, left_button, buttom_button ],
-            randomize_order: false,
-            repetitions: 1
-    };
-    let blk3 = {
-            timeline: [left_button, right_button, buttom_button, top_button ],
-            randomize_order: false,
-            repetitions: 1
-    };
-
-    let blk4 = {
-            timeline: [buttom_button, top_button,  left_button, right_button],
-            randomize_order: false,
-            repetitions: 1
-    };
-
-    // experiment instructions
-    // let exp_instructions = {
-    //     type: 'instructions',
-    //     pages: [
-    //         'Welcome to the experiment. Click next to begin.',
-    //         'This is the second page of instructions.',
-    //         'This is the final page.'],
-    // show_clickable_nav: true
-    // }
-
-    // timeline.push(exp_instructions);
-    // parameters if just running a check on stimuli location
-
-
-	// 16 clocks 
-     timeline.push(blk1); // 0-4
-    timeline.push(blk2); // 5- 8 
-    timeline.push(blk3); // 9-12
-    timeline.push(blk4); // 13-16
-
-	// 32 blocks 
-    timeline.push(blk4);
-    timeline.push(blk2);
-    timeline.push(blk1);
-    timeline.push(blk3);
-	// 40 blocks
-    timeline.push(blk2);
-    timeline.push(blk3);
-*/
-
-
-
 
 
 
