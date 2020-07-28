@@ -307,8 +307,10 @@
     function skipNextTrialFunc() {
         skipNextTrial = true;
         document.getElementById("error-header").innerHTML = errorMessageInPrepBlock;
+        jsPsych.pauseExperiment();
         setTimeout(function(){
             document.getElementById("error-header").innerHTML = '';
+            jsPsych.resumeExperiment();
         }, PREP_ERROR_MESSAGE_DISPLAY_LENGTH);
     }
 
