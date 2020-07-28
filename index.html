@@ -12,7 +12,10 @@
     <link rel="stylesheet" type="text/css" href="style.css"></link>
 </head>
 
-<body></body>
+<body>
+    <h2 id="error-header"></h2>
+    <div id="jspsych-target"></div>
+</body>
 
 <script>
 	////////////////////////
@@ -27,12 +30,14 @@
     const PREP_DURATION = 2000;
     const MOVE_DURATION = 2000;
     const END_MESSAGE_DURATION = 5000;
+    const PREP_ERROR_MESSAGE_DISPLAY_LENGTH = 5000;
     let times = "";
     let currentKeyIsUp = true;
     let runExperiment  = false;
     const instructionsToPatient = "When you see the red circle, press and hold spacebar. Hit the blue targets when middle circle turns green.";
     const finishMessageToPatient = "Your experiment has finished. Thank you!"
     const pressKeyToContinue = "-Press any key to continue-";
+    const errorMessageInPrepBlock = "Trial Skipped! Please wait until circle turn from red to green before pressing."
 
     let skipNextTrial = false;
     let trialNumber = 1;
@@ -155,7 +160,6 @@
                 times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", bottom target MOVE start\n";
                 console.log('blueTopButton move start.');
             }
-
         }
     };
 
@@ -302,6 +306,10 @@
 
     function skipNextTrialFunc() {
         skipNextTrial = true;
+        document.getElementById("error-header").innerHTML = errorMessageInPrepBlock;
+        setTimeout(function(){
+            document.getElementById("error-header").innerHTML = '';
+        }, PREP_ERROR_MESSAGE_DISPLAY_LENGTH);
     }
 
     ////////////////////////
@@ -393,6 +401,7 @@
     //both instructions and finish message included
     jsPsych.init({
         timeline: [instructions].concat(jsPsych.randomization.repeat([top_button, buttom_button, right_button, left_button], numberOfTrials)).concat([finishedExperiement]),
+        display_element: 'jspsych-target',
         on_finish: function () {
             let filename = "task_" + Date.now().toString() + ".csv";
             saveData(times, filename);
