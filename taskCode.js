@@ -4,6 +4,7 @@
     ////////////////////////
 
 	let timeline = [];
+    const version = "1";
 	 // note that one trials consist of all 4 targets appearing once
 	// so numberOfTrials  = 2 will give you 8 trials with each target appearing twice
     const numberOfTrials = 15;
@@ -294,7 +295,7 @@
         stimulus: '<span class="red fixation-dimensions"></span>',
         choices: [''],
         trial_duration: 10000,
-        button_html: '<button onclick="skipNextTrialFunc()" class="blue-leftbtn target-dimensions">%choice%</button>',
+        button_html: '<button class="blue-leftbtn target-dimensions">%choice%</button>',
         prompt: "<h2>" + instructionForPrep + "</h2>"
     };
 
@@ -413,7 +414,7 @@
         timeline: [instructions, instructionsForFixationBlock, instructionsForPrepBlock, instructionsForMoveBlock].concat(jsPsych.randomization.repeat([top_button, buttom_button, right_button, left_button], numberOfTrials)).concat([finishedExperiement]),
         display_element: 'jspsych-target',
         on_finish: function () {
-            let filename = "task_" + Date.now().toString() + ".csv";
+            let filename = "task_" + Date.now().toString() + "_ver" + version + ".csv";
             saveData(times, filename);
             //jsPsych.data.displayData();
 
