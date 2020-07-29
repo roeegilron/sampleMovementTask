@@ -8,9 +8,9 @@
 	 // note that one trials consist of all 4 targets appearing once
 	// so numberOfTrials  = 2 will give you 8 trials with each target appearing twice
     const numberOfTrials = 15;
-    const HOLD_DURATION = 2000;
+    const HOLD_DURATION = 3000;
     const PREP_DURATION = 2000;
-    const MOVE_DURATION = 2000;
+    const MOVE_DURATION = 4000;
     const END_MESSAGE_DURATION = 5000;
     const PREP_ERROR_MESSAGE_DISPLAY_LENGTH = 5000;
     let times = "";
