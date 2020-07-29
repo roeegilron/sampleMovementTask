@@ -37,7 +37,10 @@
     const instructionsToPatient = "When you see the red circle, press and hold spacebar. Hit the blue targets when the middle circle turns green.";
     const finishMessageToPatient = "Your experiment has finished. Thank you!"
     const pressKeyToContinue = "-Press any key to continue-";
-    const errorMessageInPrepBlock = "Trial Skipped! Please wait until the red circle changes color from red to green before trying to hit the blue target."
+    const errorMessageInPrepBlock = "Trial Skipped! Please wait until the red circle changes color from red to green before trying to hit the blue target.";
+    const instructionForFixation = "This is the fixation block. You will need to press the space bar and hold it through this block and the next (Preparation) block. <br>Please press space bar now";
+    const instructionForPrep = "";
+    const instructionForMove = "";
 
     let skipNextTrial = false;
     let trialNumber = 1;
@@ -298,6 +301,13 @@
         stimulus: "<h3>" + instructionsToPatient + "</h3><br><h2>" + pressKeyToContinue + "</h2>"
     };
 
+    let instructionsForFixationBlock = {
+        type: "html-keyboard-response",
+        stimulus: '<span class="red fixation-dimensions"></span>',
+        choices: [' '],
+        prompt: "<h2>" + instructionForFixation + "</h2>"
+    };
+
     let finishedExperiement = {
         type: "html-keyboard-response",
         stimulus: "<h3>" + finishMessageToPatient + "</h3><br><h2>" + pressKeyToContinue + "</h2>",
@@ -402,7 +412,7 @@
     //initialize the trial and display the statistics at end.
     //both instructions and finish message included
     jsPsych.init({
-        timeline: [instructions].concat(jsPsych.randomization.repeat([top_button, buttom_button, right_button, left_button], numberOfTrials)).concat([finishedExperiement]),
+        timeline: [instructions, instructionsForFixationBlock].concat(jsPsych.randomization.repeat([top_button, buttom_button, right_button, left_button], numberOfTrials)).concat([finishedExperiement]),
         display_element: 'jspsych-target',
         on_finish: function () {
             let filename = "task_" + Date.now().toString() + ".csv";
