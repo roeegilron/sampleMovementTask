@@ -7,7 +7,7 @@
     const version = "1";
 	 // note that one trials consist of all 4 targets appearing once
 	// so numberOfTrials  = 2 will give you 8 trials with each target appearing twice
-    const numberOfTrials = 15;
+    const numberOfTrials = 1;
     const HOLD_DURATION = 3000;
     const PREP_DURATION = 2000;
     const MOVE_DURATION = 4000;
@@ -26,7 +26,7 @@
     const instructionForMove = "Now you may lift the space bar and press the blue circle. <br>After pressing the blue circle, a new trial will begin and you will be back to the Fixation block.<br> The experiment will now begin. ";
 
     let skipNextTrial = false;
-    let trialNumber = 1;
+    let trialNumber = 0;
 
     /// pressing q w e together will exit experiment
     let keyQ = false;
@@ -34,13 +34,13 @@
     let keyE = false;
 
     times = "Trial, Time, Event, MetaData, Value\n";
-    times += "0, 0,'meta-data',"+ "version" + version + "\n";
-    times += "0, 0,'meta-data',"+ "numOfTrials" + numberOfTrials + "\n";
-    times += "0, 0,'meta-data',"+ "HOLD_DURATION" + HOLD_DURATION + "\n";
-    times += "0, 0,'meta-data',"+ "PREP_DURATION" + PREP_DURATION + "\n";
-    times += "0, 0,'meta-data',"+ "MOVE_DURATION" + MOVE_DURATION + "\n";
-    times += "0, 0,'meta-data',"+ "END_MESSAGE_DURATION" + END_MESSAGE_DURATION + "\n";
-    times += "0, 0,'meta-data',"+ "PREP_ERROR_MESSAGE_DISPLAY_LENGTH" + PREP_ERROR_MESSAGE_DISPLAY_LENGTH + "\n";
+    times += "0, 0,'meta-data',"+ "version," + version + "\n";
+    times += "0, 0,'meta-data',"+ "numOfTrials," + numberOfTrials + "\n";
+    times += "0, 0,'meta-data',"+ "HOLD_DURATION," + HOLD_DURATION + "\n";
+    times += "0, 0,'meta-data',"+ "PREP_DURATION," + PREP_DURATION + "\n";
+    times += "0, 0,'meta-data',"+ "MOVE_DURATION," + MOVE_DURATION + "\n";
+    times += "0, 0,'meta-data',"+ "END_MESSAGE_DURATION," + END_MESSAGE_DURATION + "\n";
+    times += "0, 0,'meta-data',"+ "PREP_ERROR_MESSAGE_DISPLAY_LENGTH," + PREP_ERROR_MESSAGE_DISPLAY_LENGTH + "\n";
 
 
 	////////////////////////
@@ -312,7 +312,11 @@
         stimulus: '<span class="green fixation-dimensions"></span>',
         choices: [''],
         button_html: '<button class="blue-leftbtn target-dimensions">%choice%</button>',
-        prompt: "<h2>" + instructionForMove + "</h2>"
+        prompt: "<h2>" + instructionForMove + "</h2>",
+        on_finish: function (data) {
+            //move trial from 0 to 1 since after this is beginning of trials
+            trialNumber++;
+        }
     };
 
     let finishedExperiement = {
