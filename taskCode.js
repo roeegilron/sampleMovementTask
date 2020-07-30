@@ -32,7 +32,8 @@
     let keyW = false;
     let keyE = false;
 
-
+    times = "version, numOfTrials, holdDuration, prepDuration, moveDuration, endMessageDuration, errorMessageDuration\n";
+    times += version + "," + numberOfTrials  + "," +  HOLD_DURATION  + "," +  PREP_DURATION  + "," +  MOVE_DURATION  + "," +  END_MESSAGE_DURATION  + "," +  PREP_ERROR_MESSAGE_DISPLAY_LENGTH + "\n";
 
 
 	////////////////////////
