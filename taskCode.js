@@ -7,7 +7,7 @@
     const version = "1";
 	 // note that one trials consist of all 4 targets appearing once
 	// so numberOfTrials  = 2 will give you 8 trials with each target appearing twice
-    const numberOfTrials = 1;
+    const numberOfTrials = 15;
     const HOLD_DURATION = 3000;
     const PREP_DURATION = 2000;
     const MOVE_DURATION = 4000;
