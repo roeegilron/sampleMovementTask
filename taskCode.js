@@ -42,6 +42,8 @@
     times += "0, 0,'meta-data',"+ "END_MESSAGE_DURATION," + END_MESSAGE_DURATION + "\n";
     times += "0, 0,'meta-data',"+ "PREP_ERROR_MESSAGE_DISPLAY_LENGTH," + PREP_ERROR_MESSAGE_DISPLAY_LENGTH + "\n";
 
+    //this code disables the right click on web page. May not work with all browsers
+    document.addEventListener('contextmenu', event => event.preventDefault());
 
 	////////////////////////
     // SET UP TRIALS
