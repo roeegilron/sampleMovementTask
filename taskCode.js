@@ -13,6 +13,7 @@
     const MOVE_DURATION = 4000;
     const END_MESSAGE_DURATION = 5000;
     const PREP_ERROR_MESSAGE_DISPLAY_LENGTH = 5000;
+    const PREP_INSTRUCTION_DURATION = 10000;
     let times = "";
     let currentKeyIsUp = true;
     let runExperiment  = false;
@@ -32,7 +33,8 @@
     let keyW = false;
     let keyE = false;
 
-
+    times = "version, numOfTrials, holdDuration, prepDuration, moveDuration, endMessageDuration, errorMessageDuration\n";
+    times += version + "," + numberOfTrials  + "," +  HOLD_DURATION  + "," +  PREP_DURATION  + "," +  MOVE_DURATION  + "," +  END_MESSAGE_DURATION  + "," +  PREP_ERROR_MESSAGE_DISPLAY_LENGTH + "\n";
 
 
 	////////////////////////
@@ -294,7 +296,7 @@
         type: 'html-button-response',
         stimulus: '<span class="red fixation-dimensions"></span>',
         choices: [''],
-        trial_duration: 10000,
+        trial_duration: PREP_INSTRUCTION_DURATION,
         button_html: '<button class="blue-leftbtn target-dimensions">%choice%</button>',
         prompt: "<h2>" + instructionForPrep + "</h2>"
     };
