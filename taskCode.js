@@ -33,8 +33,14 @@
     let keyW = false;
     let keyE = false;
 
-    times = "version, numOfTrials, holdDuration, prepDuration, moveDuration, endMessageDuration, errorMessageDuration\n";
-    times += version + "," + numberOfTrials  + "," +  HOLD_DURATION  + "," +  PREP_DURATION  + "," +  MOVE_DURATION  + "," +  END_MESSAGE_DURATION  + "," +  PREP_ERROR_MESSAGE_DISPLAY_LENGTH + "\n";
+    times = "Trial, Time, Event, MetaData, Value\n";
+    times += "0, 0,'meta-data',"+ "version" + version + "\n";
+    times += "0, 0,'meta-data',"+ "numOfTrials" + numberOfTrials + "\n";
+    times += "0, 0,'meta-data',"+ "HOLD_DURATION" + HOLD_DURATION + "\n";
+    times += "0, 0,'meta-data',"+ "PREP_DURATION" + PREP_DURATION + "\n";
+    times += "0, 0,'meta-data',"+ "MOVE_DURATION" + MOVE_DURATION + "\n";
+    times += "0, 0,'meta-data',"+ "END_MESSAGE_DURATION" + END_MESSAGE_DURATION + "\n";
+    times += "0, 0,'meta-data',"+ "PREP_ERROR_MESSAGE_DISPLAY_LENGTH" + PREP_ERROR_MESSAGE_DISPLAY_LENGTH + "\n";
 
 
 	////////////////////////
@@ -50,16 +56,16 @@
         button_html: '<button onclick="skipNextTrialFunc()" class="blue-topbtn target-dimensions">%choice%</button>',
         on_finish: function (data) {
             if(skipNextTrial){
-                times += "Trial: " + trialNumber + ", " + Date.now().toString() + ", top target PREP end, SKIPPED\n";
+                times += trialNumber + "," + Date.now().toString() + ",top target PREP end, SKIPPED\n";
                 console.log('blueTopButton prep skipped end');
             }
             else{
-                times += "Trial: " + trialNumber + ", " + Date.now().toString() + ", top target PREP end\n";
+                times += trialNumber + "," + Date.now().toString() + ",top target PREP end\n";
                 console.log('blueTopButton prep end');
             }
         },
         on_load: function (data) {
-            times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", top target PREP start\n";
+            times += trialNumber + "," + Date.now().toString() + ",top target PREP start\n";
             console.log('blueTopButton prep start');
         }
     };
@@ -72,24 +78,24 @@
         button_html: '<button class="blue-topbtn target-dimensions">%choice%</button>',
         on_finish: function (data) {
             if(skipNextTrial){
-                times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", top target MOVE end, SKIPPED\n";
+                times += trialNumber + "," + Date.now().toString() + ",top target MOVE end, SKIPPED\n";
                 console.log('blueTopButton move skipped end.');
                 skipNextTrial = false;
             }
             else{
-                times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", top target MOVE end\n";
+                times += trialNumber + "," + Date.now().toString() + ",top target MOVE end\n";
                 console.log('blueTopButton move end.');
             }
             trialNumber++;
         },
         on_load: function (data) {
             if(skipNextTrial){
-                times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", top target MOVE start, SKIPPED\n";
+                times += trialNumber + "," + Date.now().toString() + ",top target MOVE start, SKIPPED\n";
                 console.log('blueTopButton move skipped start.');
                 jsPsych.finishTrial();
             }
             else{
-                times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", top target MOVE start\n";
+                times += trialNumber + "," + Date.now().toString() + ",top target MOVE start\n";
                 console.log('blueTopButton move start.');
             }
 
@@ -105,16 +111,16 @@
         button_html: '<button onclick="skipNextTrialFunc()" class="blue-bottombtn target-dimensions">%choice%</button>',
         on_finish: function (data) {
             if(skipNextTrial){
-                times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", bottom target PREP end, SKIPPED\n";
+                times += trialNumber + "," + Date.now().toString() + ",bottom target PREP end, SKIPPED\n";
                 console.log('blueTopButton prep skipped end');
             }
             else{
-                times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", bottom target PREP end\n";
+                times += trialNumber + "," + Date.now().toString() + ",bottom target PREP end\n";
                 console.log('blueTopButton prep end');
             }
         },
         on_load: function (data) {
-            times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", bottom target PREP start\n";
+            times += trialNumber + "," + Date.now().toString() + ",bottom target PREP start\n";
             console.log('blueTopButton prep start');
         }
     };
@@ -127,24 +133,24 @@
         button_html: '<button class="blue-bottombtn target-dimensions">%choice%</button>',
         on_finish: function (data) {
             if(skipNextTrial){
-                times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", bottom target MOVE end, SKIPPED\n";
+                times += trialNumber + "," + Date.now().toString() + ",bottom target MOVE end, SKIPPED\n";
                 console.log('blueTopButton move skipped end.');
                 skipNextTrial = false;
             }
             else{
-                times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", bottom target MOVE end\n";
+                times += trialNumber + "," + Date.now().toString() + ",bottom target MOVE end\n";
                 console.log('blueTopButton move end.');
             }
             trialNumber++;
         },
         on_load: function (data) {
             if(skipNextTrial){
-                times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", bottom target MOVE start, SKIPPED\n";
+                times += trialNumber + "," + Date.now().toString() + ",bottom target MOVE start, SKIPPED\n";
                 console.log('blueTopButton move skipped start.');
                 jsPsych.finishTrial();
             }
             else{
-                times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", bottom target MOVE start\n";
+                times += trialNumber + "," + Date.now().toString() + ",bottom target MOVE start\n";
                 console.log('blueTopButton move start.');
             }
         }
@@ -159,16 +165,16 @@
         button_html: '<button onclick="skipNextTrialFunc()" class="blue-rightbtn target-dimensions">%choice%</button>',
         on_finish: function (data) {
             if(skipNextTrial){
-                times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", right target PREP end, SKIPPED\n";
+                times += trialNumber + "," + Date.now().toString() + ",right target PREP end, SKIPPED\n";
                 console.log('blueTopButton prep skipped end');
             }
             else{
-                times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", right target PREP end\n";
+                times += trialNumber + "," + Date.now().toString() + ",right target PREP end\n";
                 console.log('blueTopButton prep end');
             }
         },
         on_load: function (data) {
-            times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", right target PREP start\n";
+            times += trialNumber + "," + Date.now().toString() + ",right target PREP start\n";
             console.log('blueTopButton prep start');
         }
     };
@@ -181,24 +187,24 @@
         button_html: '<button class="blue-rightbtn target-dimensions">%choice%</button>',
         on_finish: function (data) {
             if(skipNextTrial){
-                times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", right target MOVE end, SKIPPED\n";
+                times += trialNumber + "," + Date.now().toString() + ",right target MOVE end, SKIPPED\n";
                 console.log('blueTopButton move skipped end.');
                 skipNextTrial = false;
             }
             else{
-                times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", right target MOVE end\n";
+                times += trialNumber + "," + Date.now().toString() + ",right target MOVE end\n";
                 console.log('blueTopButton move end.');
             }
             trialNumber++;
         },
         on_load: function (data) {
             if(skipNextTrial){
-                times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", right target MOVE start, SKIPPED\n";
+                times += trialNumber + "," + Date.now().toString() + ",right target MOVE start, SKIPPED\n";
                 console.log('blueTopButton move skipped start.');
                 jsPsych.finishTrial();
             }
             else{
-                times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", right target MOVE start\n";
+                times += trialNumber + "," + Date.now().toString() + ",right target MOVE start\n";
                 console.log('blueTopButton move start.');
             }
 
@@ -214,16 +220,16 @@
         button_html: '<button onclick="skipNextTrialFunc()" class="blue-leftbtn target-dimensions">%choice%</button>',
         on_finish: function (data) {
             if(skipNextTrial){
-                times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", left target PREP end, SKIPPED\n";
+                times += trialNumber + "," + Date.now().toString() + ",left target PREP end, SKIPPED\n";
                 console.log('blueTopButton prep skipped end');
             }
             else{
-                times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", left target PREP end\n";
+                times += trialNumber + "," + Date.now().toString() + ",left target PREP end\n";
                 console.log('blueTopButton prep end');
             }
         },
         on_load: function (data) {
-            times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", left target PREP start\n";
+            times += trialNumber + "," + Date.now().toString() + ",left target PREP start\n";
             console.log('blueTopButton prep start');
         }
     };
@@ -236,24 +242,24 @@
         button_html: '<button class="blue-leftbtn target-dimensions">%choice%</button>',
         on_finish: function (data) {
             if(skipNextTrial){
-                times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", left target MOVE end, SKIPPED\n";
+                times += trialNumber + "," + Date.now().toString() + ",left target MOVE end, SKIPPED\n";
                 console.log('blueTopButton move skipped end.');
                 skipNextTrial = false;
             }
             else{
-                times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", left target MOVE end\n";
+                times += trialNumber + "," + Date.now().toString() + ",left target MOVE end\n";
                 console.log('blueTopButton move end.');
             }
             trialNumber++;
         },
         on_load: function (data) {
             if(skipNextTrial){
-                times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", left target MOVE start, SKIPPED\n";
+                times += trialNumber + "," + Date.now().toString() + ",left target MOVE start, SKIPPED\n";
                 console.log('blueTopButton move skipped start.');
                 jsPsych.finishTrial();
             }
             else{
-                times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", left target MOVE start\n";
+                times += trialNumber + "," + Date.now().toString() + ",left target MOVE start\n";
                 console.log('blueTopButton move start.');
             }
 
@@ -266,11 +272,11 @@
         choices: jsPsych.NO_KEYS,
         trial_duration: HOLD_DURATION,
         on_finish: function (data) {
-            times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", FixationFinish\n";
+            times += trialNumber + "," + Date.now().toString() + ",FixationFinish\n";
             console.log('fixation trial finished.');
         },
         on_load: function () {
-            times += "Trial: "  + trialNumber + ", " + Date.now().toString() + ", FixationLoad\n";
+            times += trialNumber + "," + Date.now().toString() + ",FixationLoad\n";
             console.log('fixation trial loaded.');
         }
     };
@@ -367,7 +373,7 @@
 
     document.onkeyup = function (e) {
         if (e.keyCode == 32) {
-            times += Date.now().toString() + ", KeyUp\n";
+            times += trialNumber + "," + Date.now().toString() + ",KeyUp\n";
             currentKeyIsUp = true;
         }
         // check if q w e are lifted up NOW
@@ -385,7 +391,7 @@
 
     document.onkeydown = function (e) {
         if (e.keyCode == 32 && currentKeyIsUp) {
-            times += Date.now().toString() + ", KeyDown\n";
+            times += trialNumber + "," + Date.now().toString() + ",KeyDown\n";
             currentKeyIsUp = false;
         }
 
