@@ -22,7 +22,7 @@
     const errorMessageInPrepBlock = "Trial Skipped! Please wait until the red circle changes color from red to green before trying to hit the blue target.";
     const instructionForFixation = "This is the Fixation block.<br> If you see a red circle in the middle, please press the space and keep it depressed. <br> Please press the space bar now, and hold it through this block and the next (Preparation) block. ";
     const instructionForPrep = "Keep holding the space bar through this block until the next block appears. <br> You will see a blue target, but don't press it yet! <br> The middle circle will turn green when the next block appears and this is your GO signal. <br>In this example a blue target appears on the left";
-    const instructionForMove = "Now you may lift the space bar and press the blue circle. <br>After pressing the blue circle, a new trial will begin and you will be back to the Fixation block.<br> The experiment will now begin.";
+    const instructionForMove = "Now you may lift the space bar and press the blue circle. <br>After pressing the blue circle, a new trial will begin and you will be back to the Fixation block.<br> The experiment will now begin. ";
 
     let skipNextTrial = false;
     let trialNumber = 1;
