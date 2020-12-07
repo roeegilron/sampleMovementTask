@@ -32,6 +32,9 @@
     let keyQ = false;
     let keyW = false;
     let keyE = false;
+    let keyComboChar1 = 'q';
+    let keyComboChar2 = 'w';
+    let keyComboChar3 = 'e';
 
     times = "Trial, Time, Event, MetaData, Value\n";
     times += "0, 0,'meta-data',"+ "version," + version + "\n";
@@ -394,7 +397,7 @@
         }
 
     }
-
+    keys = [];
     document.onkeydown = function (e) {
         if (e.keyCode == 32 && currentKeyIsUp) {
             times += trialNumber + "," + Date.now().toString() + ",KeyDown\n";
@@ -411,11 +414,33 @@
         if ("e".localeCompare(e.key)) {
             keyE = true;
         }
-        if (keyQ && keyW && keyE) {
-//             jsPsych.finishTrial();
-//             jsPsych.endExperiment();
-        }
 
+        //This checks if all 3 keys combos have been pressed. May be pressed individually or all together.
+        if (e.key === keyComboChar1) {
+            keys.push(e.key);
+        }
+        if (e.key === keyComboChar2) {
+            keys.push(e.key);
+        }
+        if (e.key === keyComboChar3) {
+            keys.push(e.key);
+        }
+        if (keys.includes(keyComboChar1) && keys.includes(keyComboChar2) && keys.includes(keyComboChar3)) {
+            jsPsych.pauseExperiment();
+            keys.length = 0;
+            let exitTask = confirm("Task Paused...\nClick OK to save data and quit OR Cancel to resume Task.");
+            if (exitTask) {
+                let filename = "task_" + Date.now().toString() + "_ver" + version + ".csv";
+                saveData(times, filename);
+                let confirmClose = confirm("Saving Task Data to File. Close window?");
+                if (confirmClose) {
+                    window.close();
+                }
+            }
+            else{
+                jsPsych.resumeExperiment();
+            }
+        }
     }
 
     ///////////////////
