@@ -21,7 +21,7 @@ let keyW = false;
 let keyE = false;
 
 //////////////INSTRUCTIONS
-
+/*
 let instructions = {
     type: "html-keyboard-response",
     stimulus: "<h3>" + instructionsToPatient + "</h3><br><h2>" + pressKeyToContinue + "</h2>"
@@ -54,7 +54,7 @@ let instructionsForMoveBlock = {
         trialNumber++;
     }
 };
-
+*/
 ///////////////////////// SET UP TRIALS
 
 // top button:
