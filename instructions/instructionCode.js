@@ -1,6 +1,6 @@
 ///////////////////////// PARAMETERS / GLOBALS
 const PREP_INSTRUCTION_DURATION = 10000;
-const instructionsToPatient = "Task is about to begin. Instructions will follow.";
+const instructionsToPatient = "Please read instruction carefully and follow directions on each page.";
 const instructionForFixation = "This is the Fixation block.<br> If you see a red circle in the middle, please press the space and keep it depressed. <br> Please press the space bar now, and hold it through this block and the next (Preparation) block. ";
 const instructionForPrep = "Keep holding the space bar through this block until the next block appears. <br> You will see a blue target, but don't press it yet! <br> The middle circle will turn green when the next block appears and this is your GO signal. <br>In this example a blue target appears on the left";
 const instructionForMove = "Now you may lift the space bar and press the blue circle. <br>After pressing the blue circle, a new trial will begin and you will be back to the Fixation block.<br>";
