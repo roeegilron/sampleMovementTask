@@ -13,17 +13,12 @@
     const MOVE_DURATION = 4000;
     const END_MESSAGE_DURATION = 5000;
     const PREP_ERROR_MESSAGE_DISPLAY_LENGTH = 5000;
-    const PREP_INSTRUCTION_DURATION = 10000;
     let times = "";
     let currentKeyIsUp = true;
     let runExperiment  = false;
     const finishMessageToPatient = "Your experiment has finished. Thank you!"
     const pressKeyToContinue = "-Press any key to continue-";
     const errorMessageInPrepBlock = "Trial Skipped! Please wait until the red circle changes color from red to green before trying to hit the blue target.";
-    const instructionForFixation = "This is the Fixation block.<br> If you see a red circle in the middle, please press the space and keep it depressed. <br> Please press the space bar now, and hold it through this block and the next (Preparation) block. ";
-    const instructionForPrep = "Keep holding the space bar through this block until the next block appears. <br> You will see a blue target, but don't press it yet! <br> The middle circle will turn green when the next block appears and this is your GO signal. <br>In this example a blue target appears on the left";
-    const instructionForMove = "Now you may lift the space bar and press the blue circle. <br>After pressing the blue circle, a new trial will begin and you will be back to the Fixation block.<br> The experiment will now begin. ";
-    const instructionsToPatient = "Task is about to begin. Instructions will follow.";
     let skipNextTrial = false;
     let trialNumber = 0;
 
@@ -290,39 +285,6 @@
     // HELPERS
     ////////////////////////
 
-    let instructions = {
-        type: "html-keyboard-response",
-        stimulus: "<h3>" + instructionsToPatient + "</h3><br><h2>" + pressKeyToContinue + "</h2>"
-    };
-
-    let instructionsForFixationBlock = {
-        type: "html-keyboard-response",
-        stimulus: '<span class="red fixation-dimensions"></span>',
-        choices: [' '],
-        prompt: "<h2>" + instructionForFixation + "</h2>"
-    };
-
-    let instructionsForPrepBlock = {
-        type: 'html-button-response',
-        stimulus: '<span class="red fixation-dimensions"></span>',
-        choices: [''],
-        trial_duration: PREP_INSTRUCTION_DURATION,
-        button_html: '<button class="blue-leftbtn target-dimensions">%choice%</button>',
-        prompt: "<h2>" + instructionForPrep + "</h2>"
-    };
-
-    let instructionsForMoveBlock = {
-        type: 'html-button-response',
-        stimulus: '<span class="green fixation-dimensions"></span>',
-        choices: [''],
-        button_html: '<button class="blue-leftbtn target-dimensions">%choice%</button>',
-        prompt: "<h2>" + instructionForMove + "</h2>",
-        on_finish: function (data) {
-            //move trial from 0 to 1 since after this is beginning of trials
-            trialNumber++;
-        }
-    };
-
     let finishedExperiement = {
         type: "html-keyboard-response",
         stimulus: "<h3>" + finishMessageToPatient + "</h3><br><h2>" + pressKeyToContinue + "</h2>",
@@ -449,7 +411,7 @@
     //initialize the trial and display the statistics at end.
     //both instructions and finish message included
     jsPsych.init({
-        timeline: [instructions, instructionsForFixationBlock, instructionsForPrepBlock, instructionsForMoveBlock].concat(jsPsych.randomization.repeat([top_button, buttom_button, right_button, left_button], numberOfTrials)).concat([finishedExperiement]),
+        timeline: (jsPsych.randomization.repeat([top_button, buttom_button, right_button, left_button], numberOfTrials)).concat([finishedExperiement]),
         display_element: 'jspsych-target',
         on_finish: function () {
             let filename = "task_" + Date.now().toString() + "_ver" + version + ".csv";
